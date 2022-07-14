@@ -1,3 +1,4 @@
+import generateJWT from '../helpers/generateJWT.js';
 import User from '../models/User.js';
 
 const userRegister = async (req, res) => {
@@ -45,7 +46,13 @@ const userLogin = async (req, res) => {
   }
 
   if (await userExist.checkPassword(password)) {
-    console.log(req.body);
+    const token = generateJWT(userExist._id);
+
+    res.json({
+      email: email,
+      password: password,
+      token: token,
+    });
   } else {
     const error = new Error('Contraseña invalida');
     return res.status(403).json({ msg: error.message });

@@ -42,6 +42,22 @@ const updateTask = async (req, res) => {
   }
 };
 
-const deleteTask = async (req, res) => {};
+const deleteTask = async (req, res) => {
+  const { id } = req.params;
+
+  const task = await Task.findById(id);
+
+  if (!task) {
+    const error = new Error('Tarea no encontrada');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  try {
+    await task.deleteOne();
+    res.json({ msg: 'Tarea eliminada' });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export { sendTask, getTasks, updateTask, deleteTask };

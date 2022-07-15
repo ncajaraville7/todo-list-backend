@@ -14,7 +14,6 @@ const requireToken = async (req, res, next) => {
       req.user = await User.findById(check.id).select(
         '-password -createdAt -updatedAt -__v'
       );
-      console.log(req.user);
     } catch (error) {
       return res.status(404).json({ msg: 'Hubo un error' });
     }

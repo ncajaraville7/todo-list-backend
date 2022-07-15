@@ -22,7 +22,7 @@ const userRegister = async (req, res) => {
   }
 
   try {
-    const user = new User({ name, email, password, code });
+    const user = new User({ name, email, password });
     await user.save();
     res.json({ msg: 'Usuario registrado correctamente' });
   } catch (error) {

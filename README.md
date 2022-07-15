@@ -7,3 +7,6 @@
 
 - Obtener usuario via Token
   GET - http://localhost:4000/api/users/profile
+
+- Obtener tareas
+  GET - http://localhost:4000/api/tasks/

@@ -22,7 +22,25 @@ const getTasks = async (req, res) => {
   res.json(tasks);
 };
 
-const updateTask = async (req, res) => {};
+const updateTask = async (req, res) => {
+  const { id } = req.params;
+
+  const task = await Task.findById(id);
+
+  if (!task) {
+    const error = new Error('Tarea no encontrada');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  task.task = req.body.task || task.task;
+
+  try {
+    await task.save();
+    res.json({ msg: 'Tarea actualizada correctamente' });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const deleteTask = async (req, res) => {};
 

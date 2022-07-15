@@ -14,7 +14,7 @@ const router = express.Router();
 router.post('/', requireToken, sendTask);
 router.get('/', requireToken, getTasks);
 router
-  .route('/id')
+  .route('/:id')
   .put(requireToken, updateTask)
   .delete(requireToken, deleteTask);
 

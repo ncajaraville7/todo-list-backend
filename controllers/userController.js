@@ -22,7 +22,7 @@ const userRegister = async (req, res) => {
   }
 
   try {
-    const user = new User({ name, email, password });
+    const user = new User({ name, email, password, code });
     await user.save();
     res.json({ msg: 'Usuario registrado correctamente' });
   } catch (error) {
@@ -59,4 +59,8 @@ const userLogin = async (req, res) => {
   }
 };
 
-export { userRegister, userLogin };
+const profile = (req, res) => {
+  res.json(req.user);
+};
+
+export { userRegister, userLogin, profile };

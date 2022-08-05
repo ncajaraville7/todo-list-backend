@@ -5,8 +5,8 @@ const sendTask = async (req, res) => {
     const task = new Task(req.body);
     //Le pasamos a la tarea el id del usuario que la crea
     task.creatorUser = req.user._id;
-    await task.save();
-    res.json({ msg: 'Tarea agregada con exito' });
+    const taskSave = await task.save();
+    res.json({ task: taskSave, msg: 'Tarea agregada con exito' });
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +36,7 @@ const updateTask = async (req, res) => {
 
   try {
     await task.save();
-    res.json({ msg: 'Tarea actualizada correctamente' });
+    res.json({ msg: 'Tarea actualizada correctamente', task });
   } catch (error) {
     console.log(error);
   }
@@ -60,4 +60,23 @@ const deleteTask = async (req, res) => {
   }
 };
 
-export { sendTask, getTasks, updateTask, deleteTask };
+const completeTask = async (req, res) => {
+  const { id } = req.params;
+
+  const task = await Task.findById(id);
+
+  if (!task) {
+    const error = new Error('Tarea no encontrada');
+    return res.status(404).json({ msg: error.message });
+  }
+
+  try {
+    task.status = !task.status;
+    await task.save();
+    res.json({ msg: 'Estado de la tarea actualizado' });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { sendTask, getTasks, updateTask, deleteTask, completeTask };

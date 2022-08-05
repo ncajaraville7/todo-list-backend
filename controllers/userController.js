@@ -49,8 +49,10 @@ const userLogin = async (req, res) => {
     const token = generateJWT(userExist._id);
 
     res.json({
-      email: email,
-      password: password,
+      id: userExist._id,
+      name: userExist.name,
+      email: userExist.email,
+      password: userExist.password,
       token: token,
     });
   } else {

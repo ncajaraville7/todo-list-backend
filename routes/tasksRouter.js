@@ -7,6 +7,7 @@ import {
   getTasks,
   updateTask,
   deleteTask,
+  completeTask,
 } from '../controllers/taskController.js';
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.get('/', requireToken, getTasks);
 router
   .route('/:id')
   .put(requireToken, updateTask)
-  .delete(requireToken, deleteTask);
+  .delete(requireToken, deleteTask)
+  .post(requireToken, completeTask);
 
 export default router;

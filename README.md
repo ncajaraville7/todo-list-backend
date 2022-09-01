@@ -1,18 +1,18 @@
 # TODO-LIST BACKEND
 
 - Registrarse
-  POST - http://localhost:4000/api/users/register
+  POST - https://todo-list-backend-production.up.railway.app/api/users/register
 - Login
-  POST - http://localhost:4000/api/users/login
+  POST - https://todo-list-backend-production.up.railway.app/api/users/login
 
 - Obtener usuario via Token
-  GET - http://localhost:4000/api/users/profile
+  GET -https://todo-list-backend-production.up.railway.app/api/users/profile
 
 - Obtener tareas
-  GET - http://localhost:4000/api/tasks/
+  GET - https://todo-list-backend-production.up.railway.app/api/tasks/
   
 - Editar tareas
-  PUT - http://localhost:4000/api/tasks/:id
+  PUT - https://todo-list-backend-production.up.railway.app/api/tasks/:id
   
 - Eliminar tareas
-  DELETE - http://localhost:4000/api/tasks/:id
+  DELETE - https://todo-list-backend-production.up.railway.app/api/tasks/:id
